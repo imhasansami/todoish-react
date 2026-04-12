@@ -27,4 +27,7 @@ export interface Task {
   date: Date;
   isDone: boolean;
   id: string;
+  createdAt: number;
+  checkedAt: number | undefined;
+  uncheckedAt: number | undefined;
 }

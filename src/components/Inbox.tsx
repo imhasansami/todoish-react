@@ -37,17 +37,24 @@ export default function Inbox({
       <div className="flex flex-col w-[80%] h-full items-center p-2 gap-2 min-w-75">
         <h2 className="text-[40px] font-black m-0 w-full">Inbox</h2>
         <div className="w-full">
-          {tasksList.length === 0 ? (
+          {tasksList.filter((e) => !e.isDone).length === 0 ? (
             <p className="text-gray-500">No tasks</p>
           ) : (
             tasksList
               .filter((task) => !task.isDone)
-              .map((task, index) => (
+              .sort((a, b) => {
+                if (a.uncheckedAt && b.uncheckedAt)
+                  return a.uncheckedAt - b.uncheckedAt;
+                if (a.uncheckedAt) return 1; // a goes to bottom
+                if (b.uncheckedAt) return -1; // b goes to bottom
+                return a.createdAt - b.createdAt; // both never unchecked, sort by add order
+              })
+              .map((task) => (
                 <Task
-                  key={index}
+                  key={task.id}
                   task={task}
                   onCheck={onCheck}
-                  onClick={() => handleTaskClick?.(index)}
+                  onClick={() => handleTaskClick?.(tasksList.indexOf(task))}
                 />
               ))
           )}
@@ -63,12 +70,13 @@ export default function Inbox({
         )}
         {tasksList
           .filter((task) => task.isDone)
-          .map((task, index) => (
+          .sort((a, b) => (b.checkedAt ?? 0) - (a.checkedAt ?? 0))
+          .map((task) => (
             <Task
-              key={index}
+              key={task.id}
               task={task}
               onCheck={onCheck}
-              onClick={() => handleTaskClick?.(index)}
+              onClick={() => handleTaskClick?.(tasksList.indexOf(task))}
             />
           ))}
       </div>

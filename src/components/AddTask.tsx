@@ -15,15 +15,19 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
     new Date(),
   );
   const [reset, setReset] = useState(false);
+  let isTitleEmpty = title.trim().length === 0;
 
   function handleAddTask() {
-    if (!title) return;
+    if (isTitleEmpty) return;
     onAddTask?.({
       title,
       description,
       date: selectedDate || new Date(),
       isDone: false,
-      id: crypto.randomUUID()
+      id: crypto.randomUUID(),
+      createdAt: Date.now(),
+      checkedAt: undefined,
+      uncheckedAt: undefined,
     });
     setReset(true);
   }
@@ -35,10 +39,17 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
     setReset(false);
   }, [reset]);
 
+  function handleKeypress(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key === "Enter") {
+      handleAddTask();
+    }
+  }
+
   return (
     <div
-    {...props}
-    className={`w-full border border-gray-200 rounded-xl p-4 flex flex-col gap-2 bg-white @container ${props.className || ""}`}
+      {...props}
+      onKeyUp={handleKeypress}
+      className={`w-full border border-gray-200 rounded-xl p-4 flex flex-col gap-2 bg-white @container ${props.className || ""}`}
     >
       <input
         type="text"
@@ -78,8 +89,9 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
             Cancel
           </button>
           <button
-            className="transition-all duration-300 border-0 px-6 py-1 rounded-lg bg-purple-400 text-white text-[14px] cursor-pointer hover:bg-purple-500"
+            className={`${isTitleEmpty ? "bg-purple-300 cursor-not-allowed" : "bg-purple-400 cursor-pointer hover:bg-purple-500"} transition-all duration-300 border-0 px-6 py-1 rounded-lg  text-white text-[14px]`}
             onClick={handleAddTask}
+            disabled={isTitleEmpty}
           >
             Add Task
           </button>

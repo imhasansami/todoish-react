@@ -16,6 +16,9 @@ function App() {
     date: new Date(),
     isDone: false,
     id: "",
+    createdAt: 0,
+    checkedAt: 0,
+    uncheckedAt: 0,
   });
   const [tasksList, setTasksList] = useState<Task[]>(() => {
     const savedTasks = window.localStorage.getItem("tasks");
@@ -62,10 +65,20 @@ function App() {
   }
 
   function handleAddTask(newTask: Task) {
-    let { title, description, date, id } = newTask;
+    let { title, description, date, id, createdAt, checkedAt, uncheckedAt: unCheckedAt } =
+      newTask;
     setTasksList((prev) => [
       ...prev,
-      { title, description, date, isDone: false, id },
+      {
+        title,
+        description,
+        date,
+        isDone: false,
+        id,
+        createdAt,
+        checkedAt,
+        uncheckedAt: unCheckedAt,
+      },
     ]);
   }
 
@@ -118,9 +131,13 @@ function App() {
             onAddTask={(newTask) => handleAddTask(newTask)}
             handleTaskClick={handleTaskClick}
             tasksList={tasksList}
-            onCheck={(task) => {
-              updateTask(task);
-            }}
+            onCheck={(task) =>
+              updateTask({
+                ...task,
+                checkedAt: task.isDone ? Date.now() : undefined,
+                uncheckedAt: !task.isDone ? Date.now() : undefined,
+              })
+            }
           />
         );
       case "Today":
