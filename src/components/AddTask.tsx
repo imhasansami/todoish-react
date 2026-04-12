@@ -23,6 +23,7 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
       description,
       date: selectedDate || new Date(),
       isDone: false,
+      id: crypto.randomUUID()
     });
     setReset(true);
   }

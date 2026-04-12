@@ -13,8 +13,9 @@ function App() {
   const [currTask, setCurrTask] = useState<Task>({
     title: "",
     description: "",
-    date: "",
+    date: new Date(),
     isDone: false,
+    id: "",
   });
   const [tasksList, setTasksList] = useState<Task[]>(() => {
     const savedTasks = window.localStorage.getItem("tasks");
@@ -61,10 +62,10 @@ function App() {
   }
 
   function handleAddTask(newTask: Task) {
-    let { title, description, date } = newTask;
+    let { title, description, date, id } = newTask;
     setTasksList((prev) => [
       ...prev,
-      { title, description, date, isDone: false },
+      { title, description, date, isDone: false, id },
     ]);
   }
 
@@ -91,25 +92,20 @@ function App() {
   }
 
   function handleUpdateTask(updatedTask: Task) {
-    setTasksList((prev) =>
-      prev.map((task) =>
-        task.title === currTask.title && task.date === currTask.date
-          ? updatedTask
-          : task,
-      ),
-    );
+    updateTask(updatedTask);
     setCurrTask(updatedTask);
     setIsEditingTask(false);
   }
 
   function handleDeleteTask() {
-    setTasksList((prev) =>
-      prev.filter(
-        (task) =>
-          !(task.title === currTask.title && task.date === currTask.date),
-      ),
-    );
+    setTasksList((prev) => prev.filter((task) => task.id !== currTask.id));
     setIsEditingTask(false);
+  }
+
+  function updateTask(updatedTask: Task) {
+    setTasksList((prev) =>
+      prev.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+    );
   }
 
   function renderMainContent() {
@@ -122,6 +118,9 @@ function App() {
             onAddTask={(newTask) => handleAddTask(newTask)}
             handleTaskClick={handleTaskClick}
             tasksList={tasksList}
+            onCheck={(task) => {
+              updateTask(task);
+            }}
           />
         );
       case "Today":

@@ -11,6 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onAddTask: (event: TaskType) => void;
   handleTaskClick?: (index: number) => void;
   tasksList: TaskType[];
+  onCheck: (task: TaskType) => void;
 }
 
 export default function Inbox({
@@ -19,13 +20,16 @@ export default function Inbox({
   onAddTask,
   handleTaskClick,
   tasksList,
-
+  onCheck,
   ...props
 }: Props) {
   const [isAddingTask, setIsAddingTask] = useState(false);
 
   return (
-    <div {...props} className="flex flex-col w-full h-full items-center gap-2 flex-1">
+    <div
+      {...props}
+      className="flex flex-col w-full h-full items-center gap-2 flex-1"
+    >
       <TopBar
         sidebarToggle={sidebarToggle}
         isSidebarVisible={isSidebarVisible}
@@ -36,9 +40,16 @@ export default function Inbox({
           {tasksList.length === 0 ? (
             <p className="text-gray-500">No tasks</p>
           ) : (
-            tasksList.map((task, index) => (
-              <Task key={index} task={task} onClick={() => handleTaskClick?.(index)} />
-            ))
+            tasksList
+              .filter((task) => !task.isDone)
+              .map((task, index) => (
+                <Task
+                  key={index}
+                  task={task}
+                  onCheck={onCheck}
+                  onClick={() => handleTaskClick?.(index)}
+                />
+              ))
           )}
         </div>
 
@@ -50,6 +61,16 @@ export default function Inbox({
         ) : (
           <AddTaskBtn onClick={() => setIsAddingTask(true)} />
         )}
+        {tasksList
+          .filter((task) => task.isDone)
+          .map((task, index) => (
+            <Task
+              key={index}
+              task={task}
+              onCheck={onCheck}
+              onClick={() => handleTaskClick?.(index)}
+            />
+          ))}
       </div>
     </div>
   );
