@@ -6,9 +6,10 @@ import type { Task } from "../assets/data";
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onCheck?: (task: Task) => void;
   task: Task;
+  isStrikethrough?: boolean;
 }
 
-export default function Task({ task, onCheck, ...props }: Props) {
+export default function Task({ task, onCheck, isStrikethrough = true, ...props }: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -41,7 +42,7 @@ export default function Task({ task, onCheck, ...props }: Props) {
             />
           )}
         </div>
-        <p className={`m-0 ${task.isDone ? 'line-through' : ""}`}>{task.title}</p>
+        <p className={`m-0 ${task.isDone && isStrikethrough ? 'line-through' : ""}`}>{task.title}</p>
       </div>
       <div
         className={`flex items-center gap-4 transition-all duration-300 ${isHovered ? "-translate-x-4" : "translate-x-0"}`}

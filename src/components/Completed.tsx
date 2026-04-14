@@ -1,8 +1,8 @@
 import MainTemplate from "./MainTemplate";
 import DateHeading from "./DateHeading";
 import { type Task as TaskType } from "../assets/data";
-import { startOfDay } from "date-fns";
 import Task from "./Task";
+import { Fragment } from "react/jsx-runtime";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   sidebarToggle: () => void;
@@ -17,11 +17,13 @@ export default function Completed({
   ...props
 }: Props) {
   let tasksDone = tasksList.filter((e) => e.isDone);
-  let timeList = tasksList.map((e) => e.date.getTime());
-  let seen = new Set<number>();
-  let lastDateTaskIndex = tasksList.findIndex(
-    (t) => t.date.getTime() === Math.max(...timeList),
-  );
+  let mapOfTasksDone = new Map();
+
+  tasksDone.map((e) => {
+    const key = e.date.getTime();
+    if (!mapOfTasksDone.has(key)) mapOfTasksDone.set(key, [e]);
+    else mapOfTasksDone.get(key).push(e);
+  });
 
   return (
     <MainTemplate
@@ -30,21 +32,15 @@ export default function Completed({
       isSidebarVisible={isSidebarVisible}
       sidebarToggle={sidebarToggle}
     >
-      {tasksDone
-        .reduce((acc, c) => {
-          const key = startOfDay(c.date).getTime();
-          if (!seen.has(key)) {
-            seen.add(key);
-            acc.push(c.date);
-          }
-          return acc;
-        }, [] as Date[])
-        .sort((a, b) => a.getTime() - b.getTime()) //accending order sort 
-        .map((c) => (
-          <>
-            <DateHeading key={c.getTime()} date={c} />
-            <Task task={tasksList[1]}/>
-          </>
+      {[...mapOfTasksDone]
+        .sort((a, b) => a[0] - b[0])
+        .map(([key, val]) => (
+          <Fragment key={key}>
+            <DateHeading date={new Date(key)} />
+            {val.map((e: TaskType) => (
+              <Task isStrikethrough={false} key={e.id} task={e} />
+            ))}
+          </Fragment>
         ))}
     </MainTemplate>
   );

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { type Task } from "../assets/data";
 import "react-day-picker/dist/style.css";
 import DateButton from "./DateButton";
+import { startOfDay } from "date-fns";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onCancelClick?: () => void;
@@ -11,7 +12,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
+  const [selectedDate, setSelectedDate] = useState<Date>(
     new Date(),
   );
   const [reset, setReset] = useState(false);
@@ -22,7 +23,7 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
     onAddTask?.({
       title,
       description,
-      date: selectedDate || new Date(),
+      date: startOfDay(selectedDate || new Date()),
       isDone: false,
       id: crypto.randomUUID(),
       createdAt: Date.now(),

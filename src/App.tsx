@@ -29,7 +29,7 @@ function App() {
         }))
       : [];
   });
-  const [mainContent, setMainContent] = useState("Inbox");
+  const [mainContent, setMainContent] = useState("Completed"); //temporary default
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [sidebarMounted, setSidebarMounted] = useState(true);
