@@ -55,8 +55,8 @@ function App() {
     window.localStorage.setItem("tasks", JSON.stringify(tasksList));
   }, [tasksList]);
 
-  function handleTaskClick(taskIndex: number) {
-    setCurrTask(tasksList[taskIndex]);
+  function handleTaskClick(taskId: string) {
+    setCurrTask(tasksList[tasksList.findIndex((e) => e.id == taskId)]);
     setIsEditingTask(true);
   }
 
@@ -154,6 +154,7 @@ function App() {
       case "Completed":
         return (
           <Completed
+            handleTaskClick={handleTaskClick}
             sidebarToggle={hideSidebar}
             isSidebarVisible={sidebarVisible}
             tasksList={tasksList}

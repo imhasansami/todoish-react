@@ -23,7 +23,7 @@ export default function SideBar({
 return (
   <div
     {...props}
-    className={`shrink-0 overflow-hidden w-64 h-full transition-all duration-300 ${props.className ?? ""}`}
+    className={` shrink-0 overflow-hidden w-64 h-full transition-all duration-300 ${props.className ?? ""}`}
   >
     <div className="flex flex-col items-center gap-4 p-4 bg-[#151515] text-gray-200 h-full w-64">
       <div className="flex items-center gap-2 w-full justify-between">

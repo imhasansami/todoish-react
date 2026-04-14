@@ -7,17 +7,25 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onCheck?: (task: Task) => void;
   task: Task;
   isStrikethrough?: boolean;
+  handleTaskClick: (id: string) => void;
 }
 
-export default function Task({ task, onCheck, isStrikethrough = true, ...props }: Props) {
+export default function Task({
+  task,
+  onCheck,
+  isStrikethrough = true,
+  handleTaskClick,
+  ...props
+}: Props) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
       {...props}
-      className="flex items-center justify-between border-b border-zinc-700 p-2 w-full hover:bg-zinc-800 rounded-md transition-all duration-200 cursor-pointer"
+      className="flex items-center justify-between border-b border-zinc-700 p-3 w-full hover:bg-zinc-800 rounded-md transition-all duration-200 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => handleTaskClick(task.id)}
     >
       <div className="flex items-center gap-4">
         <div
@@ -42,7 +50,11 @@ export default function Task({ task, onCheck, isStrikethrough = true, ...props }
             />
           )}
         </div>
-        <p className={`m-0 ${task.isDone && isStrikethrough ? 'line-through' : ""}`}>{task.title}</p>
+        <p
+          className={`m-0 ${task.isDone && isStrikethrough ? "line-through" : ""}`}
+        >
+          {task.title}
+        </p>
       </div>
       <div
         className={`flex items-center gap-4 transition-all duration-300 ${isHovered ? "-translate-x-4" : "translate-x-0"}`}

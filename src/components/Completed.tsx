@@ -8,12 +8,14 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   sidebarToggle: () => void;
   isSidebarVisible: boolean;
   tasksList: TaskType[];
+  handleTaskClick: (id: string) => void;
 }
 
 export default function Completed({
   sidebarToggle,
   isSidebarVisible,
   tasksList,
+  handleTaskClick,
   ...props
 }: Props) {
   let tasksDone = tasksList.filter((e) => e.isDone);
@@ -37,9 +39,16 @@ export default function Completed({
         .map(([key, val]) => (
           <Fragment key={key}>
             <DateHeading date={new Date(key)} />
-            {val.map((e: TaskType) => (
-              <Task isStrikethrough={false} key={e.id} task={e} />
-            ))}
+            <div className="w-full">
+              {val.map((e: TaskType) => (
+                <Task
+                  isStrikethrough={false}
+                  key={e.id}
+                  task={e}
+                  handleTaskClick={handleTaskClick}
+                />
+              ))}
+            </div>
           </Fragment>
         ))}
     </MainTemplate>

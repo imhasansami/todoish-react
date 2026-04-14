@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   sidebarToggle?: () => void;
   isSidebarVisible?: boolean;
   onAddTask: (event: TaskType) => void;
-  handleTaskClick?: (index: number) => void;
+  handleTaskClick: (id: string) => void;
   tasksList: TaskType[];
   onCheck: (task: TaskType) => void;
 }
@@ -50,7 +50,7 @@ export default function Inbox({
                 key={task.id}
                 task={task}
                 onCheck={onCheck}
-                onClick={() => handleTaskClick?.(tasksList.indexOf(task))}
+                handleTaskClick={handleTaskClick}
               />
             ))
         )}
@@ -72,7 +72,7 @@ export default function Inbox({
             key={task.id}
             task={task}
             onCheck={onCheck}
-            onClick={() => handleTaskClick?.(tasksList.indexOf(task))}
+            handleTaskClick={handleTaskClick}
           />
         ))}
     </MainTemplate>

@@ -15,7 +15,7 @@ export default function MainTemplate({
   ...props
 }: Props) {
   return (
-    <div {...props} className={`flex flex-col w-full h-full items-center gap-2 flex-1 bg-[#0F0F0F] text-gray-200 ${props.className}`}>
+    <div {...props} className={`flex flex-col w-full overflow-y-auto h-full items-center gap-2 flex-1 bg-[#0F0F0F] text-gray-200  ${props.className}`}>
       <TopBar
         sidebarToggle={sidebarToggle}
         isSidebarVisible={isSidebarVisible}
