@@ -49,7 +49,7 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
     <div
       {...props}
       onKeyUp={handleKeypress}
-      className={`w-full border border-gray-200 rounded-xl p-4 flex flex-col gap-2 bg-white @container ${props.className || ""}`}
+      className={`w-full border bg-[#0f0f0f] text-zinc-200 border-zinc-600 rounded-xl p-4 flex flex-col gap-2  @container ${props.className || ""}`}
     >
       <input
         type="text"
@@ -77,19 +77,19 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
               setSelectedDate(date ?? new Date());
             }}
           />
-          <button className="border border-gray-300 px-6 py-1 rounded-lg text-[14px] cursor-pointer hover:bg-gray-100 transition-all duration-300">
+          <button className="border border-white/30 px-6 py-1 rounded-lg text-[14px] cursor-pointer hover:bg-zinc-500/20 transition-all duration-300">
             Attachment
           </button>
         </div>
         <div className="flex gap-2 align-center justify-end">
           <button
-            className="border border-gray-300 px-6 py-1 rounded-lg bg-gray-100 text-[14px] cursor-pointer hover:bg-gray-200 transition-all duration-300"
+            className="border border-white/30 px-6 py-1 rounded-lg bg-zinc-800 text-[14px] cursor-pointer hover:bg-zinc-300/20 transition-all duration-300"
             onClick={onCancelClick}
           >
             Cancel
           </button>
           <button
-            className={`${isTitleEmpty ? "bg-purple-300 cursor-not-allowed" : "bg-purple-400 cursor-pointer hover:bg-purple-500"} transition-all duration-300 border-0 px-6 py-1 rounded-lg  text-white text-[14px]`}
+            className={`${isTitleEmpty ? "bg-[#581c6e] cursor-not-allowed" : "bg-purple-500/90 cursor-pointer hover:bg-purple-500"} transition-all duration-300 border-0 px-6 py-1 rounded-lg  text-white text-[14px]`}
             onClick={handleAddTask}
             disabled={isTitleEmpty}
           >

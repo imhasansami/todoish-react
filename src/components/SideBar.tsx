@@ -25,7 +25,7 @@ return (
     {...props}
     className={`shrink-0 overflow-hidden w-64 h-full transition-all duration-300 ${props.className ?? ""}`}
   >
-    <div className="flex flex-col items-center gap-4 p-4 bg-gray-50 h-full w-64">
+    <div className="flex flex-col items-center gap-4 p-4 bg-[#151515] text-gray-200 h-full w-64">
       <div className="flex items-center gap-2 w-full justify-between">
         <div className="flex items-center gap-2 text-sm">
           <Icons.CircleUserRound strokeWidth={1} />
@@ -48,12 +48,12 @@ return (
           return (
             <Tabs
               key={tab.title}
-              title={tab.title}
+              componentTitle={tab.title}
               icon={IconComponent}
               currentSelected={selectedItem}
               onClick={btnClick}
               {...(tab.title == "Add Task" && {
-                icoColor: "text-purple-700",
+                icoColor: "text-purple-300",
                 fontWeight: "font-semibold",
               })}
             />

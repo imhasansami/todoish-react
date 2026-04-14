@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function DateButton({
   selectedDate,
   btnText = "Select Date",
-  initDate
+  initDate,
 }: {
   selectedDate?: (date: Date | undefined) => void;
   btnText?: string;
@@ -24,7 +24,7 @@ export default function DateButton({
     <>
       <button
         onClick={() => setShowCalendar((prev) => !prev)}
-        className="border border-gray-300 px-6 py-1 rounded-lg text-[14px] cursor-pointer hover:bg-gray-100 transition-all duration-300"
+        className="border border-white/30 px-6 py-1 rounded-lg text-[14px] cursor-pointer hover:bg-zinc-500/20 transition-all duration-300"
       >
         {selected ? format(selected, "PP") : btnText}
       </button>
@@ -36,7 +36,7 @@ export default function DateButton({
             onClick={() => setShowCalendar(false)}
           />
 
-          <div className="absolute z-50 mt-2 p-3 bg-white border border-slate-200 rounded-2xl shadow-[0px_2px_27px_0px_rgba(0,0,0,0.3)] animate-in fade-in zoom-in duration-200">
+          <div className="absolute z-50 mt-2 p-3 bg-[#0f0f0f] border border-white/20 rounded-2xl shadow-[0px_2px_27px_0px_rgba(0,0,0,0.3)] animate-in fade-in zoom-in duration-200">
             <DayPicker
               mode="single"
               selected={selected}

@@ -1,7 +1,5 @@
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 <g>
-<path style="fill:#E11D48;" d="M512,416.3c0,52.8-42.9,95.7-95.7,95.7H95.7C42.9,512,0,469.1,0,416.3v-272
-c0-52.8,42.9-95.7,95.7-95.7h320.6c52.8,0,95.7,42.9,95.7,95.7V416.3z"/>
-<polygon style="fill:#FFFFFF;" points="403.9,150.9 203.2,351.6 108.1,256.5 76.5,288.1 203.2,414.8 435.5,182.5 	"/>
+<rect style="fill:#E11D48;" width="512" height="512" rx="60"/>
+<polygon style="fill:#FFFFFF;" points="403.9,150.9 203.2,351.6 108.1,256.5 76.5,288.1 203.2,414.8 435.5,182.5"/>
 </g>
-</svg>

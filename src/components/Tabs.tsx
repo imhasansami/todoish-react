@@ -1,7 +1,7 @@
 import { type LucideIcon } from "lucide-react";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  title: string;
+  componentTitle: string;
   icon: LucideIcon;
   currentSelected: string;
   icoColor?: string;
@@ -9,7 +9,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Tabs({
-  title,
+  componentTitle: title,
   icon: Icon,
   icoColor,
   currentSelected,
@@ -21,7 +21,7 @@ export default function Tabs({
   return (
     <div
       {...props}
-      className={`flex text-sm text-left text-black m-0 border-0 rounded-md p-2 w-full hover:cursor-pointer select-none gap-2 items-center transition-all duration-200 ${isSelected ? "bg-purple-300 text-purple-900" : "hover:bg-[#f3e1ff]"}`}
+      className={`flex text-sm text-left m-0 border-0 rounded-md p-2 w-full hover:cursor-pointer select-none gap-2 items-center transition-all duration-200 ${isSelected ? "bg-purple-400/50 text-[#e3a6ff] font-semibold" : "hover:bg-[#70478c] text-gray-200"}`}
     >
       <Icon size={18} strokeWidth={1.5} className={icoColor} />
       <span className={fontWeight}>{title}</span>

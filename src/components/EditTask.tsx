@@ -53,14 +53,14 @@ export default function EditTask({
       className="absolute top-0 left-0 w-full h-full bg-black/50 z-10 flex items-center justify-center"
       onClick={close}
     >
-      <div className="flex flex-col bg-white rounded-lg p-4 w-120 h-96 m-5" onClick={(e) => e.stopPropagation()}>
+      <div className="flex flex-col bg-[#1c1c1c] rounded-lg p-4 w-120 h-96 m-5" onClick={(e) => e.stopPropagation()}>
         <div
           id="topbar"
           className="flex flex-row items-center justify-between p-2"
         >
           <h2 className="font-semibold text-xl">Edit Task</h2>
           <X
-            className="cursor-pointer text-gray-500 hover:text-black transition-all ease-in-out duration-500"
+            className="cursor-pointer text-gray-200 hover:text-white transition-all ease-in-out duration-500"
             onClick={close}
           />
         </div>
@@ -70,7 +70,7 @@ export default function EditTask({
             name="title"
             id="title"
             placeholder="Edit Title"
-            className="outline-none font-bold p-1 border border-gray-300 rounded-md"
+            className="outline-none font-bold py-1 px-2 border border-gray-500/30 rounded-md"
             value={title}
             onChange={handleTitleChange}
           />
@@ -79,7 +79,7 @@ export default function EditTask({
             name="description"
             id="description"
             placeholder="Edit Description"
-            className="outline-none p-1 border border-gray-300 rounded-md"
+            className="outline-none py-1 px-2 border border-gray-500/30 rounded-md"
             value={description}
             onChange={handleDescriptionChange}
           />

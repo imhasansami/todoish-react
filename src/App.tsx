@@ -65,8 +65,15 @@ function App() {
   }
 
   function handleAddTask(newTask: Task) {
-    let { title, description, date, id, createdAt, checkedAt, uncheckedAt: unCheckedAt } =
-      newTask;
+    let {
+      title,
+      description,
+      date,
+      id,
+      createdAt,
+      checkedAt,
+      uncheckedAt: unCheckedAt,
+    } = newTask;
     setTasksList((prev) => [
       ...prev,
       {
@@ -145,14 +152,20 @@ function App() {
       case "Upcoming":
         return <Upcoming />;
       case "Completed":
-        return <Completed />;
+        return (
+          <Completed
+            sidebarToggle={hideSidebar}
+            isSidebarVisible={sidebarVisible}
+            tasksList={tasksList}
+          />
+        );
       default:
         break;
     }
   }
 
   return (
-    <div className="flex flex-row h-screen font-sans">
+    <div className="flex flex-row h-screen font-sans bg-[#0f0f0f] text-slate-200">
       {sidebarMounted && (
         <SideBar
           onItemClick={handleItemClick}
@@ -161,7 +174,7 @@ function App() {
           className={
             sidebarVisible
               ? "opacity-100"
-              : "opacity-0 w-0! -translate-x-10 p-0! m-0!"
+              : "opacity-0 w-0! -translate-x-full p-0! m-0!"
           }
         />
       )}

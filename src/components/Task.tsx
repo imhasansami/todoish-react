@@ -14,7 +14,7 @@ export default function Task({ task, onCheck, ...props }: Props) {
   return (
     <div
       {...props}
-      className="flex items-center justify-between border-b border-gray-200 p-2 w-full hover:bg-gray-100 rounded-md transition-all duration-200 cursor-pointer"
+      className="flex items-center justify-between border-b border-zinc-700 p-2 w-full hover:bg-zinc-800 rounded-md transition-all duration-200 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
