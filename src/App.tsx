@@ -1,5 +1,4 @@
 import SideBar from "./components/SideBar.tsx";
-// import MainContent from "./components/MainContent.tsx";
 import Inbox from "./components/Inbox.tsx";
 import Today from "./components/Today.tsx";
 import Upcoming from "./components/Upcoming.tsx";
@@ -29,7 +28,7 @@ function App() {
         }))
       : [];
   });
-  const [mainContent, setMainContent] = useState("Completed"); //temporary default
+  const [mainContent, setMainContent] = useState("Inbox"); //temporary default
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [sidebarMounted, setSidebarMounted] = useState(true);

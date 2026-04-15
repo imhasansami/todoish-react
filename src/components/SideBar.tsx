@@ -13,7 +13,7 @@ export default function SideBar({
   sidebarToggle,
   ...props
 }: Props) {
-  const [selectedItem, setSelectedItem] = useState("Completed");
+  const [selectedItem, setSelectedItem] = useState("Inbox");
 
   function btnClick(e: React.MouseEvent<HTMLDivElement>) {
     setSelectedItem(e.currentTarget.textContent || "");
