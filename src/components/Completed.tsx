@@ -34,6 +34,10 @@ export default function Completed({
       isSidebarVisible={isSidebarVisible}
       sidebarToggle={sidebarToggle}
     >
+      {tasksDone.length === 0 && (
+        <p className="w-full mt-4">No Completed Tasks</p>
+      )}
+      
       {[...mapOfTasksDone]
         .sort((a, b) => a[0] - b[0])
         .map(([key, val]) => (

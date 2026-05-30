@@ -179,7 +179,10 @@ function App() {
         />
       )}
       {isAddingTask && (
-        <div className="fixed flex bg-black/50 z-100 top-0 h-screen w-screen items-center justify-center">
+        <div
+          onClick={() => setIsAddingTask(false)}
+          className="fixed flex bg-black/50 z-100 top-0 h-screen w-screen items-center justify-center"
+        >
           <AddTask
             className="m-4 shadow-[0px_2px_27px_0px_rgba(0,0,0,0.3)] max-w-180"
             onCancelClick={() => setIsAddingTask(false)}
@@ -187,6 +190,7 @@ function App() {
               handleAddTask(newTask);
               setIsAddingTask(false);
             }}
+            onClick={(e) => e.stopPropagation()}
           />
         </div>
       )}

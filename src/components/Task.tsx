@@ -1,4 +1,4 @@
-import { Circle, CircleCheckBig, PencilLine } from "lucide-react";
+import { Circle, CircleCheckBig, PencilLine, CalendarDays } from "lucide-react";
 import { useState } from "react";
 import { format } from "date-fns";
 import type { Task } from "../assets/data";
@@ -57,9 +57,10 @@ export default function Task({
         </p>
       </div>
       <div
-        className={`flex items-center gap-4 transition-all duration-300 ${isHovered ? "-translate-x-4" : "translate-x-0"}`}
+        className={`flex items-center gap-4 transition-all duration-300 ${isHovered ? "-translate-x-4" : "translate-x-4"}`}
       >
-        <span>
+        <span className="flex items-center">
+          <CalendarDays className={"mr-2 mb-[0.2rem]"} size={20} strokeWidth={1.5}/>
           {typeof task.date === "string"
             ? task.date
             : format(new Date(task.date), "PP")}

@@ -65,7 +65,7 @@ export default function AddTask({ onCancelClick, onAddTask, ...props }: Props) {
         type="text"
         name="description"
         id="description"
-        placeholder="Description"
+        placeholder="Description (optional)"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="outline-none text-sm"
