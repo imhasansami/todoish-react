@@ -10,7 +10,7 @@ A task management application developed using React, TypeScript, and Tailwind CS
 
 ![Completed Tasks](docs/completed.png)
 
-![Edit Task](docs/editTasks.png)
+![Edit Task](docs/editTask.png)
 
 ## Features and Status
 
