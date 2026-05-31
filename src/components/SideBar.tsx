@@ -29,7 +29,7 @@ return (
       <div className="flex items-center gap-2 w-full justify-between">
         <div className="flex items-center gap-2 text-sm">
           <Icons.CircleUserRound strokeWidth={1} />
-          <span>Hasan</span>
+          <span>Username</span>
         </div>
         <div className="flex items-center gap-2 justify-center">
           <Icons.Bell size={20} strokeWidth={1.5} />
